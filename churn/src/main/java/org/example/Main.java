@@ -1,6 +1,12 @@
+package org.example;
+
 import java.io.FileInputStream;
-import org.jpmml.evaluator.*;
+import java.io.InputStream;
+import org.dmg.pmml.PMML;
+import org.jpmml.evaluator.ModelEvaluator;
+import org.jpmml.evaluator.ModelEvaluatorFactory;
 import org.jpmml.model.*;
+import org.jpmml.evaluator.Evaluator;
 
 public class Main {
 
