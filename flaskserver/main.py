@@ -61,20 +61,20 @@ with open('modelo_arvore.pkl', 'wb') as arquivo:
 @app.route("/predict", methods=["POST"])
 def predict():
 
-    # Obtém os dados de entrada da solicitação
     data = request.get_json()
-    print(data)
-    return 'dadooos'
-""" 
+    #print(data)
+    #return 'testeeee'
+
+    
     # Converte os dados de entrada em um array numpy
     data_frame = pd.DataFrame(data)
 
     # Converte o array numpy em uma lista
     # novo_dado_list = novo_dado_array.tolist()
+    #print('passou da linha 77')
 
     modelo_one_hot = pd.read_pickle('/media/mcalsing/Dados/MeusProjetos/entra21ML/flaskserver/modelo_onehot.pkl')
     modelo_arvore = pd.read_pickle('/media/mcalsing/Dados/MeusProjetos/entra21ML/flaskserver/modelo_arvore.pkl')
-
     # Realiza a previsão
     novo_dado_transformado = modelo_one_hot.transform(data_frame)
     previsao = modelo_arvore.predict(novo_dado_transformado)
@@ -82,13 +82,18 @@ def predict():
 
     if (previsao == [0]): return 'O modelo previu a não evasão do cliente'
     else: return 'O modelo previu a evasão do cliente'
- """
+    
     # return jsonify({"prediction": str(previsão[0])})
-
+    
 
 @app.route("/hello")
 def hello():
     return "Hello, World!"
+
+
+@app.route("/")
+def bemvindo():
+    return "Bem vindo!"
 
 
 if __name__ == "__main__":

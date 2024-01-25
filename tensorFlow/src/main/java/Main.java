@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -13,7 +14,10 @@ public class Main {
 
     // Cria dados para enviar no corpo da requisição
     Map<String, Object> data = new HashMap<>();
-    data.put("score_credito", 300);
+
+
+
+    data.put("score_credito", 850);
     data.put("pais", "França");
     data.put("sexo_biologico", "Homem");
     data.put("idade", 27);
@@ -51,6 +55,13 @@ public class Main {
     // Obtendo a resposta do servidor
     int responseCode = connection.getResponseCode();
     System.out.println("Código de resposta: " + responseCode);
+
+    // Lê a resposta do Python
+    InputStream inputStream = connection.getInputStream();
+    String responsePython = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+
+    // Imprime o retorno do python
+    System.out.println(responsePython);
 
     // Fechando a conexão
     connection.disconnect();
