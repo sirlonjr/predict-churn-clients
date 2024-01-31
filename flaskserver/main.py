@@ -5,7 +5,6 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
-from flask import jsonify
 import pickle
 app = Flask(__name__)
 
@@ -62,16 +61,11 @@ with open('modelo_arvore.pkl', 'wb') as arquivo:
 def predict():
 
     data = request.get_json()
-    #print(data)
-    #return 'testeeee'
+    print(data)
+    # return 'testeeee'
 
-    
     # Converte os dados de entrada em um array numpy
     data_frame = pd.DataFrame(data)
-
-    # Converte o array numpy em uma lista
-    # novo_dado_list = novo_dado_array.tolist()
-    #print('passou da linha 77')
 
     modelo_one_hot = pd.read_pickle('/media/mcalsing/Dados/MeusProjetos/entra21ML/flaskserver/modelo_onehot.pkl')
     modelo_arvore = pd.read_pickle('/media/mcalsing/Dados/MeusProjetos/entra21ML/flaskserver/modelo_arvore.pkl')
@@ -82,9 +76,7 @@ def predict():
 
     if (previsao == [0]): return 'O modelo previu a não evasão do cliente'
     else: return 'O modelo previu a evasão do cliente'
-    
-    # return jsonify({"prediction": str(previsão[0])})
-    
+
 
 @app.route("/hello")
 def hello():

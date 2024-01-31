@@ -4,7 +4,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,20 +15,19 @@ public class Main {
   public static void main(String[] args) throws IOException {
 
     // Cria dados para enviar no corpo da requisição
-    Map<String, Object> data = new HashMap<>();
+    Map<String, List<Object>> data = new HashMap<>();
 
+    data.put("score_credito", Arrays.asList(850));
+    data.put("pais", Arrays.asList("França"));
+    data.put("sexo_biologico", Arrays.asList("Homem"));
+    data.put("idade", Arrays.asList(27));
+    data.put("anos_de_cliente", Arrays.asList(3));
+    data.put("saldo", Arrays.asList(56000));
+    data.put("servicos_adquiridos", Arrays.asList(1));
+    data.put("tem_cartao_credito", Arrays.asList(1));
+    data.put("membro_ativo", Arrays.asList(1));
+    data.put("salario_estimado", Arrays.asList(85270.0));
 
-
-    data.put("score_credito", 850);
-    data.put("pais", "França");
-    data.put("sexo_biologico", "Homem");
-    data.put("idade", 27);
-    data.put("anos_de_cliente", 3);
-    data.put("saldo", 56000);
-    data.put("servicos_adquiridos", 1);
-    data.put("tem_cartao_credito", 1);
-    data.put("membro_ativo", 1);
-    data.put("salario_estimado", 85270);
 
     // Converte os dados para JSON
     String requestBody = new ObjectMapper().writeValueAsString(data);
